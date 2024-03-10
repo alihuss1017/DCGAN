@@ -32,6 +32,15 @@
 - This code will have to be written from scratch and modified as it generates blurry images.
 
 
+### USEFUL INFORMATION 
+Output size from `nn.ConvTranspose2d` (assuming H = W):
+    $$Out = (In - 1) \times S - 2 \times P + kernelSize + outputPadding $$
+
+Output size from `nn.Conv2d` (assuming H = W):
+    $$Out = \lfloor\frac{In + 2 \times padding - kernelSize}{stride}\rfloor$$
+
+DCGAN Architecture and Hyperparameters: <br>
+![alt text](image.png)
 ### RESOURCES 💻
 <ul>
 <li> Papers/Tutorials: 
@@ -56,4 +65,5 @@
 - Store a single class subfolder in a folder named seg_train. For example: <br>
 &nbsp;&nbsp;&nbsp;`seg_train/buildings` <br>
 - Run code cells in main.ipynb.
+
 
