@@ -1,43 +1,43 @@
-# ECE176 Final Project: cGANs in Text-to-Image Generative Models
+# ECE176 Final Project: GAN Image Model
 ## Younus Ahmad and Ali Hussain
 
-### TO-DO 📋
-<ul>
-<li> Determine approach/method of annotating images </li>
-<ul> 
-<li> Manually label images (will take the most amount of time)
-<li> Crowdsourcing 
-<li> Use trained captioning models to generate labels (can be inaccurate) </ul>
 
-<li> Determine which dataset to use first (may only have time to use 1) 
+### COMPLETED ✅
 
-<li> Exclude "poor" images </li>
+- Initial architecture of generator and discriminator
+- Single-class GAN model (trained only on buildings from Nature Dataset)
 
-<li> Utilize pre-trained models for performance evaluation.
+### TO-DO (MAY NOT BE COMPLETE) 📋
 
-<li> Evaluate performance on all models and select the best ones.
+- Weight Initialization for Generator and Discriminator
+- Resolve blurry generated image. Possible solutions:
+    - Modify architecture
+    - Modify hyperparameters
+    - Modify training process
+    - Image Resolution?
+    - Try evaluating performance on different datasets first
+
+- Try multi-class GAN models.
+
 
 </ul>
 
 ### WORK-IN-PROGRESS ✍️
 
-- TBD
+- There is some starter code (taken from DCGAN tutorial) for:
+    - weight initialization
+    - training
+    - plotting loss vs iterations
+
+- This code will have to be written from scratch and modified as it generates blurry images.
+
 
 ### RESOURCES 💻
 <ul>
 <li> Papers/Tutorials: 
 
-- [GANs](https://towardsdatascience.com/generating-synthetic-images-from-textual-description-using-gans-e5963bae0df4)
-- [cGAN Paper](https://arxiv.org/pdf/2104.12663.pdf)
-
-<br>
-
-<li> Potential Models: 
-
-- [cGAN](https://github.com/Lornatang/CGAN-PyTorch)
-- [DCGAN](https://pytorch.org/tutorials/beginner/dcgan_faces_tutorial.html)
-- [wGAN](https://github.com/Zeleni9/pytorch-wgan)
-- [infoGAN](https://github.com/Natsu6767/InfoGAN-PyTorch)
+- [DCGAN Paper](https://arxiv.org/pdf/1511.06434.pdf)
+- [DCGAN PyTorch Tutorial](https://pytorch.org/tutorials/beginner/dcgan_faces_tutorial.html)
 
 <br>
 
@@ -45,4 +45,15 @@
 
 - [Nature](https://www.kaggle.com/code/nageshsingh/nature-image-classification)
 - [Sports](https://www.kaggle.com/datasets/puneet6060/intel-image-classification?resource=download)
+
+</ul>
+
+### HOW TO RUN CODE
+
+- To install requirements: <br>
+&nbsp;&nbsp;&nbsp;`pip install -r requirements.txt`
+
+- Store a single class subfolder in a folder named seg_train. For example: <br>
+&nbsp;&nbsp;&nbsp;`seg_train/buildings` <br>
+- Run code cells in main.ipynb.
 
