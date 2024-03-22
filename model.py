@@ -2,22 +2,22 @@ import torch
 import torch.nn as nn
 
 class GeneratorGAN(nn.Module):
-    def __init__(self,):
+    def __init__(self, kernSize, padVal):
         super(GeneratorGAN, self).__init__()
         self.conv1 = nn.ConvTranspose2d(100, 1024, kernel_size = 4, stride = 1, bias = False)
         self.bn1 = nn.BatchNorm2d(1024)
         self.relu1 = nn.ReLU(inplace = True)
 
-        self.conv2 = nn.ConvTranspose2d(1024, 512, kernel_size = 5, padding = 2, stride = 2, output_padding = 1, bias = False)
+        self.conv2 = nn.ConvTranspose2d(1024, 512, kernel_size = kernSize, stride = 2, padding = padVal, output_padding = 1, bias = False)
         self.bn2 = nn.BatchNorm2d(512)
         self.relu2 = nn.ReLU(inplace = True)
-        self.conv3 = nn.ConvTranspose2d(512, 256, kernel_size = 5, stride = 2, padding = 2, output_padding = 1, bias = False)
+        self.conv3 = nn.ConvTranspose2d(512, 256, kernel_size = kernSize, stride = 2, padding = padVal, output_padding = 1, bias = False)
         self.bn3 = nn.BatchNorm2d(256)
         self.relu3 = nn.ReLU(inplace = True)
-        self.conv4 = nn.ConvTranspose2d(256, 128, kernel_size = 5, stride = 2, padding = 2, output_padding = 1, bias = False)
+        self.conv4 = nn.ConvTranspose2d(256, 128, kernel_size = kernSize, stride = 2, padding = padVal, output_padding = 1, bias = False)
         self.bn4 = nn.BatchNorm2d(128)
         self.relu4 = nn.ReLU(inplace = True)
-        self.conv5 = nn.ConvTranspose2d(128, 3, kernel_size = 5, stride = 2, padding = 2, output_padding = 1, bias = False)
+        self.conv5 = nn.ConvTranspose2d(128, 3, kernel_size = kernSize, stride = 2, padding = padVal, output_padding = 1, bias = False)
         self.tanh = nn.Tanh()
         
     def forward(self, x):
@@ -29,17 +29,18 @@ class GeneratorGAN(nn.Module):
 
 
 class DiscriminatorGAN(nn.Module):
-    def __init__(self, ):
+
+    def __init__(self, kernSize, padVal):
         super(DiscriminatorGAN, self).__init__()
-        self.conv1 = nn.Conv2d(3, 64, kernel_size = 5, stride = 2, padding = 2,  bias = False)
+        self.conv1 = nn.Conv2d(3, 64, kernel_size = kernSize, stride = 2, padding = padVal,  bias = False)
         self.lrelu1 = nn.LeakyReLU(0.2, inplace = True)
-        self.conv2 = nn.Conv2d(64, 128, kernel_size = 5, stride = 2, padding = 2, bias = False)
+        self.conv2 = nn.Conv2d(64, 128, kernel_size = kernSize, stride = 2, padding = padVal, bias = False)
         self.bn2 = nn.BatchNorm2d(128)
         self.lrelu2 = nn.LeakyReLU(0.2, inplace = True)
-        self.conv3 = nn.Conv2d(128, 256, kernel_size = 5, stride = 2, padding = 2, bias = False)
+        self.conv3 = nn.Conv2d(128, 256, kernel_size = kernSize, stride = 2, padding = padVal, bias = False)
         self.bn3 = nn.BatchNorm2d(256)
         self.lrelu3 = nn.LeakyReLU(0.2, inplace=True)
-        self.conv4 = nn.Conv2d(256, 512, kernel_size=5, stride = 2, padding = 2, bias = False)
+        self.conv4 = nn.Conv2d(256, 512, kernel_size = kernSize, stride = 2, padding = padVal, bias = False)
         self.bn4 = nn.BatchNorm2d(512)
         self.lrelu4 = nn.LeakyReLU(0.2, inplace = True)
         self.conv5 = nn.Conv2d(512, 1, kernel_size = 4, stride = 1, bias = False)
@@ -51,3 +52,4 @@ class DiscriminatorGAN(nn.Module):
         fc3 = self.lrelu3(self.bn3(self.conv3(fc2)))
         fc4 = self.lrelu4(self.bn4(self.conv4(fc3)))
         return self.sigmoid(self.conv5(fc4))
+    
