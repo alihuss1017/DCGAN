@@ -13,8 +13,8 @@ DCGAN Paper: [Goodfellow et al.](https://arxiv.org/pdf/1511.06434.pdf)
 Dataset: [nageshsingh/nature-image-classification](https://www.kaggle.com/code/nageshsingh/nature-image-classification)
 
 ## 🧠 Model Architecture
-![](images/dcgan)
-![](images/dcgan-rules)
+![](images/dcgan.png)
+![](images/dcgan-rules.png)
 
 ## 🛠️ Training Procedure
 
